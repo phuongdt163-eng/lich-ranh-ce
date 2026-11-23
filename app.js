@@ -21,8 +21,15 @@ const membersCol = collection(db, "members");
 
 // ===== 2. DỮ LIỆU =====
 // ===== Cấu hình lịch =====
-const START = new Date(2026, 0, 1);   // ngày bắt đầu (tháng JS đếm từ 0: 10 = tháng 11)
-const END   = new Date(2026, 11, 31);   // ngày kết thúc
+function getMonday(date) {
+  const d = new Date(date);
+  const day = d.getDay();                 // 0 = CN
+  d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+const START = new Date(2025, 11, 29);   // ngày bắt đầu (tháng JS đếm từ 0: 10 = tháng 11)
+const END   = new Date(2027, 0, 3);   // ngày kết thúc
 const DAYS_PER_WEEK = 7;
 const DAY_NAMES = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 const MS_PER_DAY = 86400000;
@@ -198,4 +205,5 @@ function goToWeek(index) {
 prevBtn.addEventListener("click", () => goToWeek(weekIndex - 1));
 nextBtn.addEventListener("click", () => goToWeek(weekIndex + 1));
 todayBtn.addEventListener("click", () => goToWeek(indexForDate(new Date())));
+
 
