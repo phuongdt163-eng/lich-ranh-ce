@@ -1,11 +1,7 @@
 // ===== 1. KẾT NỐI FIREBASE =====
-import {
-  getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, deleteField,
-  onSnapshot, query, orderBy, FieldPath
-} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import {
-  getFirestore, collection, doc, addDoc, updateDoc, deleteField,
+  getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, deleteField,
   onSnapshot, query, orderBy, FieldPath
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 
@@ -37,6 +33,7 @@ const END   = new Date(2027, 0, 3);   // ngày kết thúc
 const DAYS_PER_WEEK = 7;
 const DAY_NAMES = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 const MS_PER_DAY = 86400000;
+const CLASS_BY_SLOT = { "TRƯA": "trua", "TỐI": "toi", "BẬN": "ban" };
 
 function addDays(date, n) {
   const d = new Date(date);
@@ -130,7 +127,6 @@ tr.appendChild(tdName);
       slots.forEach(slot => {
         const span = document.createElement("span");
         span.className = "tag " + CLASS_BY_SLOT[slot];
-        const CLASS_BY_SLOT = { "TRƯA": "trua", "TỐI": "toi", "BẬN": "ban" };
         span.textContent = slot;
         td.appendChild(span);
       });
@@ -232,6 +228,7 @@ function goToWeek(index) {
 prevBtn.addEventListener("click", () => goToWeek(weekIndex - 1));
 nextBtn.addEventListener("click", () => goToWeek(weekIndex + 1));
 todayBtn.addEventListener("click", () => goToWeek(indexForDate(new Date())));
+
 
 
 
