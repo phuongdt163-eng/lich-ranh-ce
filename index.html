@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UPDATE LỊCH RẢNH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>UPDATE LỊCH RẢNH</h1>
+
+<button id="addMemberBtn">+ Tự thêm mình đi </button>
+<div class="week-nav">
+  <button id="prevBtn">‹ Tuần trước</button>
+  <span id="weekLabel"></span>
+  <button id="nextBtn">Tuần sau ›</button>
+  <button id="todayBtn">Hôm nay</button>
+</div>
+  <table>
+    <thead><tr id="headerRow"></tr></thead>
+    <tbody id="bodyRows"></tbody>
+  </table>
+
+  <!-- Menu chọn, mặc định ẩn -->
+  <div id="picker" class="picker hidden">
+    <label><input type="checkbox" value="TRƯA"> TRƯA</label>
+    <label><input type="checkbox" value="TỐI"> TỐI</label>
+    <label><input type="checkbox" value="BẬN"> BẬN</label>
+    <button id="closeBtn">Xong</button>
+  </div>
+
+ <script type="module" src="app.js"></script>
+</body>
+</html>

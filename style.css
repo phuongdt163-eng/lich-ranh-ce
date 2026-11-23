@@ -1,0 +1,35 @@
+.tag { padding: 2px 10px; border-radius: 999px; font-weight: 600; }
+.toi  { background: #cfe2f7; color: #1a5fb4; }
+.trua { background: #d3edc8; color: #2d7a1f; }
+.ban  { background: #f8cfcf; color: #c01c28; }
+
+body { font-family: "Times New Roman", Times, serif; padding: 16px; }
+button, input, select, textarea {
+  font-family: "Times New Roman", Times, serif;   /* lấy font từ body */
+  font-size: "Times New Roman", Times, serif;
+}
+h1 { text-align: center; background: #e89a9a; padding: 12px; margin: 0; }
+
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+th { background: #f4cccc; }
+td { cursor: pointer; }
+
+.tag { display: inline-block; margin: 2px; padding: 2px 10px;
+       border-radius: 999px; font-weight: 600; }
+.toi  { background: #cfe2f7; color: #1a5fb4; }
+.trua { background: #d3edc8; color: #2d7a1f; }
+.ban  { background: #f8cfcf; color: #c01c28; }
+
+.picker { position: absolute; background: white; border: 1px solid #aaa;
+          border-radius: 8px; padding: 10px; display: flex;
+          flex-direction: column; gap: 6px;
+          box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+.hidden { display: none; }
+
+.week-nav { display: flex; align-items: center; justify-content: center;
+            gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+.week-nav button { padding: 8px 14px; border: 1px solid #ccc; border-radius: 8px;
+                   background: white; cursor: pointer; }
+.week-nav button:disabled { opacity: .4; cursor: not-allowed; }
+#weekLabel { font-weight: 600; min-width: 200px; text-align: center; }
