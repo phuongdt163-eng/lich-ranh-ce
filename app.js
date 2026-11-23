@@ -1,4 +1,8 @@
 // ===== 1. KẾT NỐI FIREBASE =====
+import {
+  getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, deleteField,
+  onSnapshot, query, orderBy, FieldPath
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import {
   getFirestore, collection, doc, addDoc, updateDoc, deleteField,
@@ -108,8 +112,16 @@ function renderTable() {
     tr.appendChild(tdNo);
 
     const tdName = document.createElement("td");
-    tdName.textContent = member.name;
-    tr.appendChild(tdName);
+tdName.textContent = member.name;
+
+const delBtn = document.createElement("button");
+delBtn.className = "btn-delete";
+delBtn.textContent = "🗑";
+delBtn.title = "Xoá thành viên";
+delBtn.addEventListener("click", () => deleteMember(member));
+tdName.appendChild(delBtn);
+
+tr.appendChild(tdName);
 
     days.forEach(day => {
       const td = document.createElement("td");
@@ -118,6 +130,7 @@ function renderTable() {
       slots.forEach(slot => {
         const span = document.createElement("span");
         span.className = "tag " + CLASS_BY_SLOT[slot];
+        const CLASS_BY_SLOT = { "TRƯA": "trua", "TỐI": "toi", "BẬN": "ban" };
         span.textContent = slot;
         td.appendChild(span);
       });
@@ -180,7 +193,21 @@ document.getElementById("addMemberBtn").addEventListener("click", async () => {
     order: Date.now()   // dùng để sắp xếp theo thứ tự thêm vào
   });
 });
+// ===== XOÁ THÀNH VIÊN =====
+async function deleteMember(member) {
+  if (!confirm(`Xoá "${member.name}" khỏi lịch? Không khôi phục được đâu.`)) return;
 
+  picker.classList.add("hidden");   // tránh menu chọn đang mở cho người vừa xoá
+  editing = null;
+
+  try {
+    await deleteDoc(doc(db, "members", member.id));
+    // onSnapshot tự vẽ lại bảng
+  } catch (err) {
+    console.error(err);
+    alert("Không xoá được. Kiểm tra Firestore Rules (cần cho phép delete).");
+  }
+}
 // ===== 7. CHUYỂN TUẦN =====
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -205,5 +232,6 @@ function goToWeek(index) {
 prevBtn.addEventListener("click", () => goToWeek(weekIndex - 1));
 nextBtn.addEventListener("click", () => goToWeek(weekIndex + 1));
 todayBtn.addEventListener("click", () => goToWeek(indexForDate(new Date())));
+
 
 
