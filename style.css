@@ -32,4 +32,16 @@ td { cursor: pointer; }
 .week-nav button { padding: 8px 14px; border: 1px solid #ccc; border-radius: 8px;
                    background: white; cursor: pointer; }
 .week-nav button:disabled { opacity: .4; cursor: not-allowed; }
+
 #weekLabel { font-weight: 600; min-width: 200px; text-align: center; }
+
+.btn-delete {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  color: #c01c28;
+  cursor: pointer;
+}
+.btn-delete:hover { background: #f8cfcf; }
